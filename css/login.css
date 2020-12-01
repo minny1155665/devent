@@ -1,0 +1,49 @@
+
+#app{
+	border: 1px solid #333333;
+	margin: 0 auto;
+	padding-top: 50px;
+	padding-bottom: 50px;
+	width: 750px;
+	height: 100%;
+	background-color: rgba(255, 255, 255, 0.8);
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	justify-content: space-between;
+}
+#app>img{
+	width: 30%;
+}
+#app>input{
+	background: none;
+	width: 40%;
+	border-style: none;
+	font: 30 24px Comfortaa;
+	border-bottom: 1px solid #333333;
+	margin: 50px auto;
+}
+::placeholder{
+	color: #333333;
+}
+#app>.login{
+	text-align: center;
+	border-radius: 5px;
+	width: 20%;
+	background-color: #A8D8B9;
+	line-height: 50px;
+}
+#app>a{
+	color: #999999;
+}
+@media  screen and (max-width: 750px) {
+	#app>img{
+		width: 50%;
+	}
+	#app>input{
+		width: 60%;
+	}
+	#app{
+		width: 90%;
+	}
+}

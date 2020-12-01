@@ -1,0 +1,148 @@
+
+#app{
+	width: 100%;
+	height: auto;
+	overflow: hidden;
+	margin: 50px auto;
+}
+
+
+
+#app>article{
+	width: 750px;
+	height: auto;
+	overflow: hidden;
+	margin: 0 auto;
+	margin-bottom: 50px;
+}
+#app>article>#tickets,#pasttickets{
+	width: 80%;
+	height: auto;
+	overflow: hidden;
+	margin: 0 auto;
+}
+.ticket{
+	width: 100%;
+	height: auto;
+	overflow: hidden;
+	display: flex;
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+.ticket>#photo{
+	width: 40%;
+	height: auto;
+	overflow: hidden;
+}
+.ticket>#photo>img{
+	width: 100%;
+
+}
+.ticket>#inform{
+	width: 60%;
+	float: right;
+	height: auto;
+	overflow: hidden;
+	font-size: 20px;
+	line-height: 40px;
+	display: block; 
+	text-align: center;
+}
+	
+.ticket>#inform>#time{
+	display: block; 
+	width: 100%;
+	text-align: right;
+	text-decoration: none;
+	color: royalblue;
+}
+.ticket>#inform>#location{
+	display: block; 
+	width: 100%;
+	text-align: right;
+	text-decoration: none;
+	color: royalblue;
+}
+.ticket>#inform>p{
+	display: block; 
+	width: 100%;
+	text-align: right;
+	font-size: 26px; 
+	line-height: 52px;
+	font-weight: normal;
+}
+
+.pastticket{
+	width: 100%;
+	height: auto;
+	overflow: hidden;
+	display: flex;
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+.pastticket>#photo{
+	width: 40%;
+	height: auto;
+	overflow: hidden;
+}
+.pastticket>#photo>img{
+	width: 100%;
+
+}
+.pastticket>#inform{
+	width: 60%;
+	float: right;
+	height: auto;
+	overflow: hidden;
+	font-size: 20px;
+	line-height: 40px;
+	display: block; 
+	text-align: center;
+}
+	
+.pastticket>#inform>#time{
+	display: block; 
+	width: 100%;
+	text-align: right;
+	text-decoration: none;
+	color: darkgrey;
+}
+.pastticket>#inform>#location{
+	display: block; 
+	width: 100%;
+	text-align: right;
+	text-decoration: none;
+	color: darkgrey;
+}
+.pastticket>#inform>p{
+	color: grey;
+	display: block; 
+	width: 100%;
+	text-align: right;
+	font-size: 26px; 
+	line-height: 52px;
+	font-weight: normal;
+}
+@media screen and (max-width: 750px){
+	.ticket>#inform>#time,#location{
+		font-size: 14px;
+		line-height: 28px;
+	}
+	.ticket>#inform>p{
+		font-size: 16px;
+		line-height: 32px;
+	}
+	.pastticket>#inform>#time,#location{
+		font-size: 14px;
+		line-height: 28px;
+	}
+	.pastticket>#inform>p{
+		font-size: 16px;
+		line-height: 32px;
+	}
+}
+@media screen and (max-width: 750px){
+	#app>article{
+		width: 100%;
+	}
+}

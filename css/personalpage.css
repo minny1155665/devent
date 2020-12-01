@@ -1,0 +1,81 @@
+body{
+	background-image: url('../image/bk2.jpg');
+	background-size: cover;
+	background-position: center;
+
+}
+#app{
+	width: 750px;
+	height: auto;
+	margin: 0 auto;
+	display: flex;
+	flex-direction:  column;
+	align-items: center;
+	
+
+	background-repeat: no-repeat;
+
+
+}
+#app>#personalpc{
+	margin-top: 30px;
+	width: 20%;
+	height: 0;
+	padding-bottom: 20%;
+	border-radius: 50%;
+	background-image: url("../image/user.png");
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+	border-bottom: 3px solid #d8d8d8;
+}
+#app>h2{
+	line-height: 60px;
+}
+#app>#pointsarea{
+	color: #333333;
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-evenly;
+	margin-bottom: 30px;
+}
+#app>#pointsarea>div{
+	text-align: center;
+	width: 40%;
+	font-size: 20px;
+	line-height: 50px;
+}
+#app>#pointsarea>div>h2{
+
+	
+	line-height: 50px;
+}
+#app>ul{
+	width: 100%;
+	color: #999999;
+	background-color: #ffffff;
+
+	list-style: none;
+	text-align: center;
+	line-height: 50px;
+	font-size: 20px;
+}
+#app>ul>li{
+	border-bottom: 1px solid #d8d8d8;
+}
+@media screen and (max-width: 750px){
+	#app>#pointsarea>div{
+		font-size: 16px;
+		line-height: 30px;
+	}
+	#app>#pointsarea>div>h2{
+		font-size: 20px;
+	}
+	#app{
+		width: 100%;
+	}
+	#app>ul{
+		font-size: 16px;
+	}
+}
