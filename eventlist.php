@@ -3,10 +3,12 @@ session_start();
 include "./class/database.php";
 include "./class/event.php";
 include "./class/user_event.php";
+include "./class/event_point.php";
 
 $events = new Event();
 $eventData = $events->getAllEvents();
 $user_event = new UserEvent();
+$event_point = new EventPoint();
 ?>
 
 <!DOCTYPE html>
@@ -93,8 +95,8 @@ $user_event = new UserEvent();
             <div id="eventlist">         
                 <?php if($_GET["sort"] == "attend"):?>
                     <?php foreach($eventData as $event):?>
-                        <?php $user_event->event_id = $event["id"]?>
-                        <?php if($user_event->getStatus() == 'not_yet'):?>
+                        <?php $user_event->event_id = $event["id"];?>
+                        <?php if($user_event->getStatus() == 'not_yet' && $event["attend"] > 0):?>
                             <div class="events">
                                 <a id='imga'href="./eventmore.php?sort=<?=$_GET["sort"]?>&id=<?= $event["id"]?>">
                                     <div class="eventimg" id="coverpic"
@@ -127,8 +129,8 @@ $user_event = new UserEvent();
                     <?php endforeach;?>
                 <?php elseif($_GET["sort"] == "help"):?>
                     <?php foreach($eventData as $event):?>
-                        <?php $user_event->event_id = $event["id"]?>
-                        <?php if($user_event->getStatus() == 'not_yet'):?>
+                        <?php $user_event->event_id = $event["id"];?>
+                        <?php if($user_event->getStatus() == 'not_yet' && $event["help"] > 0):?>
                             <div class="events">
                                 <a id='imga'href="./eventmore.php?sort=<?=$_GET["sort"]?>&id=<?= $event["id"]?>">
                                     <div class="eventimg" id="coverpic"
