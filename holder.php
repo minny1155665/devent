@@ -8,8 +8,8 @@ $events = new Event();
 $user_event = new UserEvent();
 
 $user_event->user_id = $_SESSION["user_id"];
-$userTickets = $user_event->getTickets();
-$userPast = $user_event->getPast();
+$userHold = $user_event->getHold();
+$userHoldPast = $user_event->getHoldPast();
 ?>
 <!DOCTYPE html>
 <html>
@@ -31,32 +31,34 @@ $userPast = $user_event->getPast();
 	<div id="app">
 		<article>
 			<div id="tickets">
-				<h1>Tickets</h1>
-				<?php if(!empty($userTickets)):?>
-					<?php foreach($userTickets as $tickets):
-					$eventsData = $events->getTheEvents($tickets["event_id"]);?>
+				<h1>Holding</h1>
+				<?php if(!empty($userHold)):?>
+					<?php foreach($userHold as $hold):
+					$eventsData = $events->getTheEvents($hold["event_id"]);?>
 						<?php foreach($eventsData as $event):?>
 							<div class="ticket">
 								<div id="photo"><img src="<?= $event["image"]?>"></div>
 								<div id="inform">
 									<a id="time" href=""><?= $event["date"]?>   <?= $event["time"]?></a>
 									<a id="location" href="https://www.google.com.tw/maps/search/<?= $event["location"]?>"><?= $event["location"]?></a>
-									<p id="name"><?= $event["name"]?></p>
+                                    <p id="name"><?= $event["name"]?></p>
+                                    <br>
+                                    <a href="./endEvent.php?id=<?=$event["id"]?>">結束活動</a>
 								</div>
 							</div>
 						<?php endforeach;?>
 					<?php endforeach;?>
 				<?php else:?>
 					</br>
-					<h1>尚未報名活動</h1>
+					<h1>尚未主辦活動</h1>
 					</br>
 				<?php endif;?>
 			</div>
 			<div id="pasttickets">
-				<h1>PastTickets</h1>
-				<?php if(!empty($userPast)):?>
-					<?php foreach($userPast as $past):
-					$eventsData = $events->getTheEvents($past["event_id"]);?>
+				<h1>Holded</h1>
+				<?php if(!empty($userHoldPast)):?>
+					<?php foreach($userHoldPast as $holdPast):
+					$eventsData = $events->getTheEvents($holdPast["event_id"]);?>
 						<?php foreach($eventsData as $event):?>
 							<div class="pastticket">
 								<div id="photo"><img src="<?= $event["image"]?>"></div>
@@ -70,7 +72,7 @@ $userPast = $user_event->getPast();
 					<?php endforeach;?>
 				<?php else:?>
 					</br>
-					<h1>尚未參加過活動</h1>
+					<h1>尚未主辦過活動</h1>
 					</br>
 				<?php endif;?>
 			</div>

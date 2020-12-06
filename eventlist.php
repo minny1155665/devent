@@ -90,9 +90,10 @@ $eventData = $events->getAllEvents();
                 <div><button onclick="location.href='eventlist.php?sort=attend'">參加</button></div>
             </div>
             <div id="eventlist">         
+                <?php if($_GET["sort"] == "attend"):?>
                     <?php foreach($eventData as $event):?>
                         <div class="events">
-                            <a id='imga'href="./eventmore.php?id=<?= $event["id"]?>">
+                            <a id='imga'href="./eventmore.php?sort=<?=$_GET["sort"]?>&id=<?= $event["id"]?>">
                                 <div class="eventimg" id="coverpic"
                                 style="background-image: url('<?= $event["image"]?>');" ></div>
                             </a>
@@ -106,7 +107,7 @@ $eventData = $events->getAllEvents();
                                 <?php if($_SESSION["user_id"] != $event["holder"]):?>
                                     <div id="btnarea">
                                         <div id="interested" onclick="location.href='favorite.php?id=<?= $event["id"]?>';"></div>
-                                        <div onclick="alert('請先選擇協辦或參加')">attend</div>
+                                        <div onclick="location.href='attend.php?sort=<?=$_GET["sort"]?>&id=<?=$event["id"]?>'">attend</div>
                                     </div>
                                 <?php else:?>
                                     <div id="btnarea">
@@ -120,6 +121,38 @@ $eventData = $events->getAllEvents();
                             <?php endif;?>
                         </div>
                     <?php endforeach;?>
+                <?php elseif($_GET["sort"] == "help"):?>
+                    <?php foreach($eventData as $event):?>
+                        <div class="events">
+                            <a id='imga'href="./eventmore.php?sort=<?=$_GET["sort"]?>&id=<?= $event["id"]?>">
+                                <div class="eventimg" id="coverpic"
+                                style="background-image: url('<?= $event["image"]?>');" ></div>
+                            </a>
+                            <div>
+                                <h3 id="name"><?= $event["name"]?></h3>
+                                <p id="time" href=""><?= $event["date"]?>   <?= $event["time"]?></p>
+                                <a id="location" href="https://www.google.com.tw/maps/search/<?= $event["location"]?>"><?= $event["location"]?></a><br>
+                                
+                            </div>
+                            <?php if(isset($_SESSION["user_id"])):?>
+                                <?php if($_SESSION["user_id"] != $event["holder"]):?>
+                                    <div id="btnarea">
+                                        <div id="interested" onclick="location.href='favorite.php?id=<?= $event["id"]?>';"></div>
+                                        <div onclick="location.href='attend.php?sort=<?=$_GET["sort"]?>&id=<?=$event["id"]?>'">attend</div>
+                                    </div>
+                                <?php else:?>
+                                    <div id="btnarea">
+                                        <div id="edit">編輯</div>
+                                        <div id="delete" onclick="location.href='delete.php?id=<?= $event["id"]?>';">刪除</div>
+                                    </div>
+                                <?php endif;?>
+                            <?php else:?>
+                                <div id="btnarea">
+                                </div>
+                            <?php endif;?>
+                        </div>
+                    <?php endforeach;?>
+                <?php endif;?>
             </div>
 
         </article>

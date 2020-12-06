@@ -33,7 +33,7 @@ class EventPoint{
         $this->attend_point = $data["attend_point"];
     }
 
-    public function createPoint(){
+    public function create(){
         $sql = "INSERT INTO event_point(event_id, attend_point)
                 VALUES (:event_id, :attend_point)";
         $addData = $this->dbConnect->prepare($sql);
@@ -44,21 +44,21 @@ class EventPoint{
     }
 
     public function getHelpAmount(){ 
-        $sql = "SELECT COUNT(*) as amount FROM list WHERE event_id = :event_id AND user_role = 'help'";
+        $sql = "SELECT COUNT(*) as amount FROM user_event WHERE event_id = :event_id AND user_role = 'help'";
         $getHelp = $this->dbConnect->prepare($sql);
         $getHelp->bindParam(":event_id", $this->event_id);
         $getHelp->execute();
         $data = $getHelp->fetch(PDO::FETCH_ASSOC);
-        $this->help_amount = $data["amount"];
+        return $data["amount"];
     }
 
     public function getAttendAmount(){ 
-        $sql = "SELECT COUNT(*)  as amount FROM list WHERE event_id = :event_id AND user_role = 'attend'";
+        $sql = "SELECT COUNT(*)  as amount FROM user_event WHERE event_id = :event_id AND user_role = 'attend'";
         $getAttend = $this->dbConnect->prepare($sql);
         $getAttend->bindParam(":event_id", $this->event_id);
         $getAttend->execute();
         $data = $getAttend->fetch(PDO::FETCH_ASSOC);
-        $this->attend_amount = $data["amount"];
+        return $data["amount"];
     }
 
     public function calculate(){
@@ -86,6 +86,30 @@ class EventPoint{
         $updateData->bindParam(":hold_point", $this->hold_point);
         $updateData->bindParam(":help_point", $this->help_point);
         $result = $updateData->execute();
+
+        return $result;
+    }
+
+    public function collectPoint(){
+        $sql = "UPDATE user_event SET point = :hold_point WHERE event_id = :event_id AND user_role = 'hold'";
+        $holdPoint = $this->dbConnect->prepare($sql);
+        $holdPoint->bindParam(":hold_point", $this->hold_point);
+        $holdPoint->bindParam(":event_id", $this->event_id);
+        $holdPoint->execute();
+
+        $sql2 = "UPDATE user_event SET point = :help_point WHERE event_id = :event_id AND user_role = 'help'";
+        $helpPoint = $this->dbConnect->prepare($sql2);
+        $helpPoint->bindParam(":help_point", $this->help_point);
+        $helpPoint->bindParam(":event_id", $this->event_id);
+        $helpPoint->execute();
+
+        $sql3 = "UPDATE user_event SET point = :attend_point WHERE event_id = :event_id AND user_role = 'attend'";
+        $attendPoint = $this->dbConnect->prepare($sql3);
+        $this->attend_point *= -1;
+        $attendPoint->bindParam(":attend_point", $this->attend_point);
+        $attendPoint->bindParam(":event_id", $this->event_id);
+        $result = $attendPoint->execute();
+
         return $result;
     }
 }

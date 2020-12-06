@@ -4,12 +4,10 @@ include "./class/database.php";
 include "./class/event.php";
 include "./class/user_event.php";
 
-$events = new Event();
 $user_event = new UserEvent();
-
+$events = new Event();
 $user_event->user_id = $_SESSION["user_id"];
-$userTickets = $user_event->getTickets();
-$userPast = $user_event->getPast();
+$userFavorite = $user_event->getFavorite();
 ?>
 <!DOCTYPE html>
 <html>
@@ -30,50 +28,27 @@ $userPast = $user_event->getPast();
 	</header>
 	<div id="app">
 		<article>
-			<div id="tickets">
-				<h1>Tickets</h1>
-				<?php if(!empty($userTickets)):?>
-					<?php foreach($userTickets as $tickets):
-					$eventsData = $events->getTheEvents($tickets["event_id"]);?>
-						<?php foreach($eventsData as $event):?>
-							<div class="ticket">
-								<div id="photo"><img src="<?= $event["image"]?>"></div>
-								<div id="inform">
-									<a id="time" href=""><?= $event["date"]?>   <?= $event["time"]?></a>
-									<a id="location" href="https://www.google.com.tw/maps/search/<?= $event["location"]?>"><?= $event["location"]?></a>
-									<p id="name"><?= $event["name"]?></p>
-								</div>
-							</div>
-						<?php endforeach;?>
-					<?php endforeach;?>
-				<?php else:?>
-					</br>
-					<h1>尚未報名活動</h1>
-					</br>
-				<?php endif;?>
-			</div>
-			<div id="pasttickets">
-				<h1>PastTickets</h1>
-				<?php if(!empty($userPast)):?>
-					<?php foreach($userPast as $past):
-					$eventsData = $events->getTheEvents($past["event_id"]);?>
-						<?php foreach($eventsData as $event):?>
-							<div class="pastticket">
-								<div id="photo"><img src="<?= $event["image"]?>"></div>
-								<div id="inform">
-									<a id="time" href=""><?= $event["date"]?>   <?= $event["time"]?></a>
-									<a id="location" href="https://www.google.com.tw/maps/search/<?= $event["location"]?>"><?= $event["location"]?></a>
-									<p id="name"><?= $event["name"]?></p>
-								</div>
-							</div>
-						<?php endforeach;?>
-					<?php endforeach;?>
-				<?php else:?>
-					</br>
-					<h1>尚未參加過活動</h1>
-					</br>
-				<?php endif;?>
-			</div>
+            <h1>Favorite</h1>
+                <?php if(!empty($userFavorite)):?>
+                    <?php foreach($userFavorite as $fav):
+                        $eventsData = $events->getTheEvents($fav["event_id"]);?>
+                        <?php foreach($eventsData as $event):?>
+                            <div id="tickets">
+                                <div class="ticket">
+                                    <div id="photo"><img src="<?= $event["image"]?>"></div>
+                                    <div id="inform">
+                                        <a id="time" href=""><?= $event["date"]?>   <?= $event["time"]?></a>
+                                        <a id="location" href="https://www.google.com.tw/maps/search/<?= $event["location"]?>"><?= $event["location"]?></a>
+                                        <p id="name"><?= $event["name"]?></p>
+                                    </div>
+                                </div>
+                            </div>  
+                        <?php endforeach;?>
+                    <?php endforeach;?>
+                <?php else:?>
+                    </br>
+                    <h1>尚未收藏活動</h1>
+                <?php endif;?>
 		</article>
 		
 		<div class="navigation">

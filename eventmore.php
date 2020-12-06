@@ -10,7 +10,8 @@ $event->getOneEvent();
 $event_point = new EventPoint();
 $event_point->event_id = $_GET["id"];
 $event_point->getOneEventPoint();
-
+$event_point->getHelpAmount();
+$event_point->getAttendAmount();
 ?>
 
 <!DOCTYPE html>
@@ -35,22 +36,24 @@ $event_point->getOneEventPoint();
 	        <article>
 	            <p id="name"><?= $event->name?></p>
 				<p>發起人: <a id="holder" href=""><?= $event->holder?></a></p>
-				<p>日期: <a id="date"><?= $event->date?></a></p>
-	            <p>時間: <a id="time"><?= $event->time?></a></p>
-	            <p>地點: <a id="location" href=""><?= $event->location?></a></p>
-	            <p>消耗點數: <a id="point"><?= $event_point->attend_point?>pt</a></p>
-	            <p>協辦點數發放規則:</p>
-	            <p id="rule">一人500點。限10人。</p>
+	            <p>時間: <a id="time"><?= $event->date?> <?= $event->time?></a></p>
+				<p>地點: <a id="location" href="https://www.google.com.tw/maps/search/<?= $event->location?>"><?= $event->location?></a></p>
+				<p>協辦名額: <a id="help"><?= $event->help - $event_point->help_amount?></a></p>
+				<p>參與名額: <a id="attend"><?= $event->attend - $event_point->attend_amount?></a></p>
+				<p>消耗點數: <a id="point"><?= $event_point->attend_point?>pt</a></p>				
+	            <!-- <p>協辦點數發放規則:</p>
+	            <p id="rule">一人500點。限10人。</p> -->
 	            <p>詳情:</p>
-	            <p id="more"><?= $event->content?></p>
-	            <div id="numbers">目前參與人數: 6人</div>
+				<p id="more"><?= $event->content?></p>
+				</br>
+	            <!-- <div id="numbers">目前參與人數: 6人</div> -->
 	        </article>
 
-	        <div class="buttons">
+	        <!-- <div class="buttons">
 	            <div id="contact">聯絡</div>
 	            <div id="attend">參加</div>
 	            <div id="fun">有興趣</div>
-	        </div>
+	        </div> -->
 	    </div>
 	</div>
 

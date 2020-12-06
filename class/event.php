@@ -7,7 +7,8 @@
         public $date;
         public $time;
         public $location;
-        public $attendance;
+        public $help;
+        public $attend;
         public $image;
         public $content;
 
@@ -17,8 +18,17 @@
         }
 
         public function getAllEvents(){
-            $sql = "SELECT * FROM events";
+            $sql = "SELECT * FROM events ORDER BY date DESC";
             $getData = $this->dbConnect->prepare($sql);
+            $getData->execute();
+            $data = $getData->fetchAll(PDO::FETCH_ASSOC);
+            return $data;
+        }
+
+        public function getTheEvents($id){
+            $sql = "SELECT * FROM events WHERE id = :id";
+            $getData = $this->dbConnect->prepare($sql);
+            $getData->bindParam(":id", $id);
             $getData->execute();
             $data = $getData->fetchAll(PDO::FETCH_ASSOC);
             return $data;
@@ -35,7 +45,8 @@
             $this->date = $data["date"];
             $this->time = $data["time"];
             $this->location = $data["location"];
-            $this->attendance = $data["attendance"];
+            $this->help = $data["help"];
+            $this->attend = $data["attend"];
             $this->image = $data["image"];
             $this->content = $data["content"];
         }
@@ -51,15 +62,17 @@
         }
 
         public function create(){
-            $sql = "INSERT INTO events(id, name, date, time, location, attendance, image, content) 
-                    VALUES (:id, :name, :date, :time, :location, :attendance, :image, :content)";
+            $sql = "INSERT INTO events(id, name, holder, date, time, location, attend, help, image, content) 
+                    VALUES (:id, :name, :holder, :date, :time, :location, :attend, :help, :image, :content)";
             $addData = $this->dbConnect->prepare($sql);
             $addData->bindParam(":id", $this->id);
             $addData->bindParam(":name", $this->name);
+            $addData->bindParam(":holder", $this->holder);
             $addData->bindParam(":date", $this->date);
             $addData->bindParam(":time", $this->time);
             $addData->bindParam(":location", $this->location);
-            $addData->bindParam(":attendance", $this->attendance);
+            $addData->bindParam(":attend", $this->attend);
+            $addData->bindParam(":help", $this->help);
             $addData->bindParam(":image", $this->image);
             $addData->bindParam(":content", $this->content);
             $result = $addData->execute();
@@ -75,7 +88,8 @@
             $updateData->bindParam(":date", $this->date);
             $updateData->bindParam(":time", $this->time);
             $updateData->bindParam(":location", $this->location);
-            $updateData->bindParam(":attendance", $this->attendance);
+            $updateData->bindParam(":help", $this->help);
+            $updateData->bindParam(":attend", $this->attend);
             $updateData->bindParam(":content", $this->content);
             $updateData->bindParam(":id", $this->id);
             $result = $updateData->execute();
@@ -92,6 +106,16 @@
         }
 
         public function delete(){
+            $sql3 = "DELETE FROM user_event WHERE event_id = :id";
+            $deleteUserEvent = $this->dbConnect->prepare($sql3);
+            $deleteUserEvent->bindParam(":id", $this->id);
+            $deleteUserEvent->execute();
+
+            $sql4 = "DELETE FROM event_point WHERE event_id = :id";
+            $deleteEventPoint = $this->dbConnect->prepare($sql4);
+            $deleteEventPoint->bindParam(":id", $this->id);
+            $deleteEventPoint->execute();
+
             $sql = "DELETE FROM events WHERE id = :id";
             $deleteData = $this->dbConnect->prepare($sql);
             $deleteData->bindParam(":id", $this->id);

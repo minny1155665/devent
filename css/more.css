@@ -1,220 +1,226 @@
 @import url("reset.css");
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500&display=swap");
 * {
-    box-sizing:border-box;
-    margin: 0;
-    padding: 0;
-    font-family: 'Noto Sans TC', sans-serif;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Noto Sans TC", sans-serif;
 }
-img{
-	display: block;
-}
-
-html,body{
-	width: 100%;
-	height: 100%;
-   -webkit-overflow-scrolling: touch;  
+img {
+  display: block;
 }
 
-#hidebg{
-	
-	width: 100%;
-	height: auto;
-	overflow: hidden;
-	display: block;
-
-	
-}
-#hidebg> #eventcontent{
-	width: 750px;
-	overflow: hidden;
-	margin: 20px auto 20px auto;
-	background-color: #ffffff;
-	border: 0.5px solid #d8d8d8;
-	display: block;
-}
-#hidebg> #eventcontent> .return{
-	width: 80%;
-	height: auto;
-	overflow: hidden;
-	background-color: #ffffff;
-	z-index: 999;
-
-}
-#hidebg> #eventcontent> .return>a>img{
-
-	width: 40px;
-	height: 40px;
-	transform:scaleX(-1);
-
-	margin-top: 10px;
-	margin-left: 10px;
-
-}
-#hidebg> #eventcontent> img{
-	width: 80%;
-	height: : auto;
-	overflow: hidden;
-	margin: 10px auto;
-}
-#hidebg> #eventcontent> article{
-	display: block;
-	width: 80%;
-	height: auto;
-	overflow: hidden;
-	margin: 10px auto;
-}
-#hidebg> #eventcontent> article> p{
-	font-size: 20px;
-	line-height: 40px;
-	text-decoration: none;
-
-}
-#hidebg> #eventcontent> article> #name{
-	font-weight: bold;
-	font-size: 28px;
-	line-height: 60px;
-	text-align: center;
-}
-#hidebg> #eventcontent> article> p> #holder{
-	text-decoration: none;
-	color: royalblue;
-	float: right;
-}
-#hidebg> #eventcontent> article> p> #time{
-	text-decoration: none;
-	color: royalblue;
-	float: right;
+html,
+body {
+  width: 100%;
+  height: 100%;
+  -webkit-overflow-scrolling: touch;
 }
 
-#hidebg> #eventcontent> article> p> #loc{
-	text-decoration: none;
-	color: royalblue;
-	float: right;
+#hidebg {
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+  display: block;
 }
-#hidebg> #eventcontent> article> p> #point{
-	text-decoration: none;
-	color: royalblue;
-	float: right;
+#hidebg > #eventcontent {
+  width: 750px;
+  overflow: hidden;
+  margin: 20px auto 20px auto;
+  background-color: #ffffff;
+  border: 0.5px solid #d8d8d8;
+  display: block;
+}
+#hidebg > #eventcontent > .return {
+  width: 80%;
+  height: auto;
+  overflow: hidden;
+  background-color: #ffffff;
+  z-index: 999;
+}
+#hidebg > #eventcontent > .return > a > img {
+  width: 40px;
+  height: 40px;
+  transform: scaleX(-1);
+
+  margin-top: 10px;
+  margin-left: 10px;
+}
+#hidebg > #eventcontent > img {
+  width: 80%;
+  height: auto;
+  overflow: hidden;
+  margin: 10px auto;
+}
+#hidebg > #eventcontent > article {
+  display: block;
+  width: 80%;
+  height: auto;
+  overflow: hidden;
+  margin: 10px auto;
+}
+#hidebg > #eventcontent > article > p {
+  font-size: 20px;
+  line-height: 40px;
+  text-decoration: none;
+}
+#hidebg > #eventcontent > article > #name {
+  font-weight: bold;
+  font-size: 28px;
+  line-height: 60px;
+  text-align: center;
+}
+#hidebg > #eventcontent > article > p > #holder {
+  text-decoration: none;
+  color: royalblue;
+  float: right;
 }
 
-#hidebg> #eventcontent> article> #more{
-	color: darkgrey;
-	font-size: 20px;
-	line-height: 40px;
-}
-#hidebg> #eventcontent> article> #numbers{
-	color: royalblue;
-	font-size: 20px;
-	line-height: 40px;
-	text-align: center;
-	font-weight: normal;
-	margin-bottom: 50px;
-}
-#hidebg> #eventcontent> .buttons{
-	width: 85%;
-	height: auto;
-	overflow: hidden;
-	margin: 0 auto;
-
-	display: flex;
-}
-#hidebg> #eventcontent> .buttons> #contact{
-	width: 30%;
-	height: auto;
-	overflow: hidden;
-	margin: 0 ;
-	float: left;
-	margin-top: 10px;
-	margin-bottom: 10px;
-	text-align: center;
-	background-color: #ffffff;
-	color: #000000;
-	border: 0.5px solid #d8d8d8;
-	border-radius: 5px;
-	font-size: 14px;
-	line-height: 50px
-}
-#hidebg> #eventcontent> .buttons> #attend{
-	width: 30%;
-	height: auto;
-	overflow: hidden;
-	margin: 0;
-	float: left;
-	margin-top: 10px;
-	margin-bottom: 10px;
-	margin-left: 5%;
-	margin-right: 5%;
-	text-align: center;
-	background-color: #000000;
-	color: #ffffff;
-	border: 0.5px solid #d8d8d8;
-	border-radius: 5px;
-	font-size: 14px;
-	line-height: 50px
-}
-#hidebg> #eventcontent> .buttons> #fun{
-	width: 30%;
-	height: auto;
-	overflow: hidden;
-	margin: 0;
-	float: left;
-	margin-top: 10px;
-	margin-bottom: 10px;
-	text-align: center;
-	background-color: #ffffff;
-	color: #000000;
-	border: 0.5px solid #d8d8d8;
-	border-radius: 5px;
-	font-size: 14px;
-	line-height: 50px
+#hidebg > #eventcontent > article > p > #time {
+  text-decoration: none;
+  color: royalblue;
+  float: right;
 }
 
-@media screen and (max-width: 750px){
+#hidebg > #eventcontent > article > p > #location {
+  text-decoration: none;
+  color: royalblue;
+  float: right;
+}
+#hidebg > #eventcontent > article > p > #help {
+  text-decoration: none;
+  color: royalblue;
+  float: right;
+}
+#hidebg > #eventcontent > article > p > #attend {
+  text-decoration: none;
+  color: royalblue;
+  float: right;
+}
+#hidebg > #eventcontent > article > p > #point {
+  text-decoration: none;
+  color: royalblue;
+  float: right;
+}
 
-	#hidebg> #eventcontent{
-		width: 90%;
-	}
+#hidebg > #eventcontent > article > #more {
+  color: darkgrey;
+  font-size: 20px;
+  line-height: 40px;
+}
+#hidebg > #eventcontent > article > #numbers {
+  color: royalblue;
+  font-size: 20px;
+  line-height: 40px;
+  text-align: center;
+  font-weight: normal;
+  margin-bottom: 50px;
+}
+#hidebg > #eventcontent > .buttons {
+  width: 85%;
+  height: auto;
+  overflow: hidden;
+  margin: 0 auto;
 
-	#hidebg> #eventcontent> .returntop{
-		display: block;
-		width: 25px;
-		height: 25px;
-		border-radius: 5px;
-		z-index: 999;
-		background-image: url('../image/top.png');
-		background-color: #ffffff;
-		background-size: cover;
-		position: fixed;
-		bottom: 20px;
-		right: 10px;
-		box-shadow:5px 5px 5px grey;
-	}
+  display: flex;
+}
+#hidebg > #eventcontent > .buttons > #contact {
+  width: 30%;
+  height: auto;
+  overflow: hidden;
+  margin: 0;
+  float: left;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  text-align: center;
+  background-color: #ffffff;
+  color: #000000;
+  border: 0.5px solid #d8d8d8;
+  border-radius: 5px;
+  font-size: 14px;
+  line-height: 50px;
+}
+#hidebg > #eventcontent > .buttons > #attend {
+  width: 30%;
+  height: auto;
+  overflow: hidden;
+  margin: 0;
+  float: left;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-left: 5%;
+  margin-right: 5%;
+  text-align: center;
+  background-color: #000000;
+  color: #ffffff;
+  border: 0.5px solid #d8d8d8;
+  border-radius: 5px;
+  font-size: 14px;
+  line-height: 50px;
+}
+#hidebg > #eventcontent > .buttons > #fun {
+  width: 30%;
+  height: auto;
+  overflow: hidden;
+  margin: 0;
+  float: left;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  text-align: center;
+  background-color: #ffffff;
+  color: #000000;
+  border: 0.5px solid #d8d8d8;
+  border-radius: 5px;
+  font-size: 14px;
+  line-height: 50px;
+}
 
-	#hidebg> #eventcontent> .return>a>img{
-		width: 25px;
-		height: 25px;
-		margin: 5px;
-	}
+@media screen and (max-width: 750px) {
+  #hidebg > #eventcontent {
+    width: 90%;
+  }
 
-	#hidebg> #eventcontent> article> p{
-		font-size: 14px;
-		line-height: 28px;
-	}
-	#hidebg> #eventcontent> article> #name{
-		font-size: 16px;
-		line-height: 32px;
-	}
-	#hidebg> #eventcontent> article> #more{
-		font-size: 12px;
-		line-height: 24px;
-	}
-	#hidebg> #eventcontent> article> #numbers{
-		font-size: 14px;
-		line-height: 28px;
-	}
-	#hidebg> #eventcontent> .buttons>#contacts,#fun,#attend{
-		font-size: 14px;
-		line-height: 30px
-	}
+  #hidebg > #eventcontent > .returntop {
+    display: block;
+    width: 25px;
+    height: 25px;
+    border-radius: 5px;
+    z-index: 999;
+    background-image: url("../image/top.png");
+    background-color: #ffffff;
+    background-size: cover;
+    position: fixed;
+    bottom: 20px;
+    right: 10px;
+    box-shadow: 5px 5px 5px grey;
+  }
+
+  #hidebg > #eventcontent > .return > a > img {
+    width: 25px;
+    height: 25px;
+    margin: 5px;
+  }
+
+  #hidebg > #eventcontent > article > p {
+    font-size: 14px;
+    line-height: 28px;
+  }
+  #hidebg > #eventcontent > article > #name {
+    font-size: 16px;
+    line-height: 32px;
+  }
+  #hidebg > #eventcontent > article > #more {
+    font-size: 12px;
+    line-height: 24px;
+  }
+  #hidebg > #eventcontent > article > #numbers {
+    font-size: 14px;
+    line-height: 28px;
+  }
+  #hidebg > #eventcontent > .buttons > #contacts,
+  #fun,
+  #attend {
+    font-size: 14px;
+    line-height: 30px;
+  }
 }

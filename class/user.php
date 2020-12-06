@@ -42,5 +42,13 @@ class User{
         $this->username = $data["username"];
         $this->total_point = $data["total_point"];
     }
+
+    // public function addPoint(){
+    //     $sql = "UPDATE user SET total_point = :total_point";
+    //     $pointData = $this->dbConnect->prepare($sql);
+    //     $pointData->bindParam(":total_point", $this->total_point);
+    //     $result = $pointData->execute();
+    //     return $result;
+    // }
 }
 ?>

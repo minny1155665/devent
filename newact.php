@@ -1,9 +1,12 @@
 <?php
+session_start();
 include "./class/database.php";
 include "./class/event.php";
 include "./class/event_point.php";
+include "./class/user_event.php";
 $event = new Event();
 $event_point = new EventPoint();
+$user_event = new UserEvent();
 ?>
 
 <!DOCTYPE html>
@@ -16,9 +19,18 @@ $event_point = new EventPoint();
 
 	<link rel="stylesheet" type="text/css" href="css/newact.css">
  	<link rel="stylesheet" type="text/css" href="css/nav.css">
-    <script type="text/javascript" src="scripts/returntop.js"></script>
+	<script type="text/javascript" src="scripts/returntop.js"></script>
+	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+	<script src="scripts/jquery.js"></script>
 	<title></title>
 </head>
+<!-- <script>
+	$(document).ready(function(){
+		$("#cover").live('click',function(){
+			$("#image-upload").click();
+		});
+	});
+</script> -->
 <body>
 	<header class="toplogo">    	
 		<h1 class="logo">
@@ -33,18 +45,20 @@ $event_point = new EventPoint();
 	    	<div id="part1">
 	    		活動照片
 	        	<div class="uploadpic">
-					<div id="cover">
-						<label for="image"><img src="./image/plus.png" alt="新增圖片"></label>
-						<input type="file" name="image" id="image">
-					</div>
-	        		<div id="side">
-		        		<div></div>
-		        		<div></div>
-		        		<div></div>
-		    		</div>
+					<label for="image-upload"  id="cover">
+						<input type="file" name="image" id="image-upload">
+					</label>					
 	    		</div>
+				</br>
 	    		活動名稱
-	    		<input type="text" placeholder="Name" name="name">
+				<input type="text" placeholder="Name" name="name">
+				<!-- 活動類別
+      			<select>
+       				<option>愛心公益</option>
+       				<option>技能交換</option>
+       				<option>揪團</option>
+       				<option>其他</option>
+      			</select> -->
 			</div>
 		
 	    	<div id="part2">
@@ -59,10 +73,10 @@ $event_point = new EventPoint();
 			</div>
 		
 	    	<div id="part3">
-	    		活動名額
-	    		<!-- <input type="text" placeholder="min">
-	    		~ -->
-	    		<input type="number" placeholder="max" name="attendance">
+				協辦名額
+	    		<input type="number" placeholder="max" name="help">
+	    		參加名額
+	    		<input type="number" placeholder="max" name="attend">
 	        	活動消耗點數
 	        	<input type="number" placeholder="points" name="point">
 	        	<!-- 點數發放方式
@@ -77,6 +91,7 @@ $event_point = new EventPoint();
 	    		<div class="laststep" onclick="location.href='index.php';">回首頁</div>
 	    		<div class="nextstep"><input type="submit" name="submit" value="下一步"></div>
 			</div>
+			<div id="space"></div>
 		</div> 
 	</form>
 
@@ -86,13 +101,18 @@ $event_point = new EventPoint();
 			$event_id = $event->randomId();
 			$event->id = $event_id;
 			$event->name = $_POST["name"];
+			$event->holder = $_SESSION["user_id"];
 			$event->date = $_POST["date"];
 			$event->time = $_POST["time"];
 			$event->location = $_POST["location"];
-			$event->attendance = $_POST["attendance"];
+			$event->help = $_POST["help"];
+			$event->attend = $_POST["attend"];
 			$event->content = $_POST["content"];
 			$event_point->event_id = $event_id;
 			$event_point->attend_point = $_POST["point"];
+			$user_event->event_id = $event_id;
+			$user_event->user_id = $_SESSION["user_id"];
+			$user_event->user_role = "hold";
 			//上傳圖片並移動到upload資料夾
 			$type = array("image/jpg", "image/gif", "image/bmp", "image/jpeg", "image/png");
 			$image_location = "./upload/"; 
@@ -105,7 +125,7 @@ $event_point = new EventPoint();
 				if(isset($image_name) && !empty($image_name)){ 
 					$result = move_uploaded_file($image_temp, $image);
 				}
-				if($event->create() && $event_point->createPoint() && $result === true){
+				if($event->create() && $event_point->create() && $user_event->create() && $result === true){
 					echo "<script>
 							alert('新增成功');
 							window.location.href='index.php';
@@ -119,13 +139,33 @@ $event_point = new EventPoint();
 		}
 	?>
 
-	<!-- <div class="navigation">
-		<div id="main">
-		    <div onclick="location.href='index.php';">首頁</div>
-		    <div class="selectednav" onclick="location.href='newact.php';"><img src="image/logo/add.svg"></div>
-		    <div  onclick="location.href='tickets.php';">票券</div>
-		    <div onclick="location.href='personalpage.php';">個人</div>
-		</div> 
-	</div> -->
+		<div class="navigation">
+            <div id="main">
+                <div class="selectednav" onclick="location.href='index.php';">首頁</div>
+                <div onclick="location.href='<?php
+                    if(!isset($_SESSION["user_id"])){
+                        echo "login.php";
+                    }else{
+                        echo "newact.php";
+                    }
+                ?>';"><img src="image/logo/add.svg"></div>
+                <div onclick="location.href='<?php
+                    if(!isset($_SESSION["user_id"])){
+                        echo "login.php";
+                    }else{
+                        echo "tickets.php";
+                    }
+                ?>';">票券</div>
+                <div onclick="location.href='<?php
+                    if(!isset($_SESSION["user_id"])){
+                        echo "login.php";
+                    }else{
+                        echo "personalpage.php";
+                    }
+                ?>';">個人</div>
+                
+                
+            </div> 
+        </div>
 </body>
 </html>
