@@ -43,6 +43,17 @@ class EventPoint{
         return $result;
     }
 
+    public function edit(){
+        $sql = "UPDATE event_point 
+                SET attend_point = :attend_point
+                WHERE event_id = :event_id";
+        $updateData = $this->dbConnect->prepare($sql);
+        $updateData->bindParam(":attend_point", $this->attend_point);
+        $updateData->bindParam(":event_id", $this->event_id);
+        $result = $updateData->execute();
+        return $result;
+    }
+
     public function getHelpAmount(){ 
         $sql = "SELECT COUNT(*) as amount FROM user_event WHERE event_id = :event_id AND user_role = 'help'";
         $getHelp = $this->dbConnect->prepare($sql);

@@ -113,7 +113,7 @@ $user_event = new UserEvent();
                                         </div>
                                     <?php else:?>
                                         <div id="btnarea">
-                                            <div id="edit">編輯</div>
+                                            <div id="edit" onclick="location.href='editEvent.php?id=<?= $event["id"]?>';">編輯</div>
                                             <div id="delete" onclick="location.href='delete.php?id=<?= $event["id"]?>';">刪除</div>
                                         </div>
                                     <?php endif;?>

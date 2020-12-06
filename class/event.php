@@ -81,15 +81,15 @@
 
         public function edit(){
             $sql = "UPDATE events 
-                    SET name = :name, date = :date, time = :time, location = :location, attendance = :attendance, content = :content
+                    SET name = :name, date = :date, time = :time, location = :location, attend = :attend, help = :help, content = :content
                     WHERE id = :id";
             $updateData = $this->dbConnect->prepare($sql);
             $updateData->bindParam(":name", $this->name);
             $updateData->bindParam(":date", $this->date);
             $updateData->bindParam(":time", $this->time);
             $updateData->bindParam(":location", $this->location);
-            $updateData->bindParam(":help", $this->help);
             $updateData->bindParam(":attend", $this->attend);
+            $updateData->bindParam(":help", $this->help);        
             $updateData->bindParam(":content", $this->content);
             $updateData->bindParam(":id", $this->id);
             $result = $updateData->execute();
