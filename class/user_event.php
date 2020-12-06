@@ -8,6 +8,7 @@ class UserEvent{
     public $point;
 
     public $event_num;
+    public $total_point;
 
     public function __construct(){
         $db = new Database();
@@ -123,25 +124,42 @@ class UserEvent{
     }
 
     public function totalPoint(){
-        $sql = "SELECT * FROM user_event WHERE event_id = :event_id";
-        $pointData = $this->dbConnect->prepare($sql);
-        $pointData->bindParam(":event_id", $this->event_id);
-        $pointData->execute();
-        $data = $pointData->fetchAll(PDO::FETCH_ASSOC);
+        $sql = "SELECT DISTINCT user_id FROM user_event";
+        $eventData = $this->dbConnect->prepare($sql);
+        $eventData->execute();
+        $data = $eventData->fetchAll(PDO::FETCH_ASSOC);
         foreach($data as $event){
             $user_id[] = $event["user_id"];
-            $point[] = $event["point"];
         }
-
-        return $user_id;
-
-    //     $sql2 = "UPDATE user SET total_point = :total_point WHERE user_id = :user_id";
-    //         $addPoint = $this->dbConnect->prepare($sql2);
-    //         $addPoint->bindParam(":total_point", $total);
-    //         $addPoint->bindParam(":user_id", $this->user_id);
-    //         $result = $addPoint->execute();
+        
+        foreach($user_id as $user){
+            $sql2 = "SELECT point FROM user_event WHERE user_id = :user_id";
+            $eventData2 = $this->dbConnect->prepare($sql2);
+            $eventData2->bindParam(":user_id", $user);
+            $eventData2->execute();
+            $data2 = $eventData2->fetchAll(PDO::FETCH_ASSOC);
+            foreach($data2 as $event2){
+                $point[] = $event2["point"];
+            }
+            $this->total_point = array_sum($point);
+            unset($point);
             
-    //     return $result;
+            $sql3 = "UPDATE user SET total_point = :total_point WHERE user_id = :user_id";
+            $pointData = $this->dbConnect->prepare($sql3);
+            $pointData->bindParam(":user_id", $user);
+            $pointData->bindParam(":total_point", $this->total_point);
+            $result = $pointData->execute();
+        }
+        return $result;
+    }
+
+    public function getStatus(){
+        $sql = "SELECT status FROM user_event WHERE event_id = :event_id AND user_role = 'hold'";
+        $statusData = $this->dbConnect->prepare($sql);
+        $statusData->bindParam(":event_id", $this->event_id);
+        $statusData->execute();
+        $data = $statusData->fetchAll(PDO::FETCH_ASSOC);
+        return $data[0]["status"];
     }
 }
 ?>

@@ -50,7 +50,7 @@ $userHoldPast = $user_event->getHoldPast();
 					<?php endforeach;?>
 				<?php else:?>
 					</br>
-					<h1>尚未主辦活動</h1>
+					<h1>目前無主辦中活動</h1>
 					</br>
 				<?php endif;?>
 			</div>

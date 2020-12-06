@@ -2,13 +2,11 @@
     include "./class/database.php";
     include "./class/event_point.php";
     include "./class/user_event.php";
-    include "./class/user.php";
 
     $event_point = new EventPoint();
     $user_event = new UserEvent();
 
     $event_point->event_id = $_GET["id"];
-    $user_event->event_id = $_GET["id"];
     $event_point->help_amount = $event_point->getHelpAmount();
     $event_point->attend_amount = $event_point->getAttendAmount();
     
