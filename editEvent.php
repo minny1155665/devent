@@ -123,7 +123,7 @@ $event_point->getOneEventPoint();
 	        	活動地點:<br>
 	        	<input type="text" placeholder="Location" name="location" value="<?= $event->location?>"><br>
 	        	活動詳情
-	        	<textarea name="content" value="<?= $event->content?>"></textarea>
+	        	<textarea name="content"><?= $event->content?></textarea>
 			</div>
 		
 	    	<div id="part3">
