@@ -129,10 +129,11 @@ class UserEvent{
         $pointData->execute();
         $data = $pointData->fetchAll(PDO::FETCH_ASSOC);
         foreach($data as $event){
+            $user_id[] = $event["user_id"];
             $point[] = $event["point"];
         }
 
-        return $point;
+        return $user_id;
 
     //     $sql2 = "UPDATE user SET total_point = :total_point WHERE user_id = :user_id";
     //         $addPoint = $this->dbConnect->prepare($sql2);
