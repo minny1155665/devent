@@ -141,7 +141,7 @@ $user_event = new UserEvent();
 
 		<div class="navigation">
             <div id="main">
-                <div class="selectednav" onclick="location.href='index.php';">首頁</div>
+                <div onclick="location.href='index.php';">首頁</div>
                 <div onclick="location.href='<?php
                     if(!isset($_SESSION["user_id"])){
                         echo "login.php";
