@@ -35,7 +35,7 @@ $user = new User();
             if($user->create()){
                 echo "<script>
                         alert('註冊成功');
-                        window.location.href='index.php';
+                        window.location.href='login.php';
                     </script>";
             }else{
                 echo '<div class="alert alert-secondary my-3" role="alert">註冊失敗</div>';

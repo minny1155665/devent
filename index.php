@@ -31,10 +31,10 @@ $user_event = new UserEvent();
                 <img src="image/logo1.png">
             </h1>
         </header>
-        <div class="searchbar">
+        <!-- <div class="searchbar">
             <img src="image/search.png" alt="">
             <input type="text" id="txtSearch" onChange="txtSearch()" placeholder="搜尋">
-        </div>
+        </div> -->
     	<div id="all">
             <div class="nav">
                 <ul>

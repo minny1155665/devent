@@ -115,8 +115,7 @@ class UserEvent{
     }
 
     public function endStatus(){
-        $sql = "UPDATE user_event SET status = 'past'
-        WHERE event_id = :event_id";
+        $sql = "UPDATE user_event SET status = 'past' WHERE event_id = :event_id";
         $setStatus = $this->dbConnect->prepare($sql);
         $setStatus->bindParam(":event_id", $this->event_id);
         $result = $setStatus->execute();

@@ -7,6 +7,7 @@
     $user_event = new UserEvent();
 
     $event_point->event_id = $_GET["id"];
+    $user_event->event_id = $_GET["id"];
     $event_point->help_amount = $event_point->getHelpAmount();
     $event_point->attend_amount = $event_point->getAttendAmount();
     
